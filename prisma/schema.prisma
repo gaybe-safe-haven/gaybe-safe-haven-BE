@@ -9,3 +9,26 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Shelter {
+    id Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    name String
+    streetAddress String
+    state String
+    zip Int
+    websiteUrl String?
+    phoneNumber String?
+    verified Boolean @default(false)
+    reviews Review[]
+  }
+
+model Review {
+    id Int @id @default(autoincrement())
+    shelter Shelter @relation(fields: [shelterId], references: [id])
+    shelterId Int
+    cleanliness Float?
+    safety Float?
+    staff Float?
+  }
