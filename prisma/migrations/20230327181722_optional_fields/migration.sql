@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "Review" ALTER COLUMN "cleanliness" DROP NOT NULL,
+ALTER COLUMN "safety" DROP NOT NULL,
+ALTER COLUMN "staff" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "Shelter" ALTER COLUMN "websiteUrl" DROP NOT NULL,
+ALTER COLUMN "phoneNumber" DROP NOT NULL;
