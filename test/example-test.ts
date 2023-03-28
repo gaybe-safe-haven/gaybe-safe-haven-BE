@@ -1,5 +1,5 @@
-import { expect } from 'chai'
-import * as test from '../src/example.js'
+import { expect } from 'chai';
+import * as test from '../src/example';
 
 describe('Github Actions Test', () => {
   it('should return true if given a value', () => {
