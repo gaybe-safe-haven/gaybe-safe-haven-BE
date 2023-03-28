@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --pretty --transpile-only src/app.ts",
+    "dev": "ts-node-dev --respawn --pretty --transpile-only src/server.ts",
     "test": "mocha --require ts-node/register test/**/*-test.ts"
   },
   "keywords": [],
@@ -25,6 +25,7 @@
     "@prisma/client": "^4.11.0",
     "@types/cors": "^2.8.13",
     "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
