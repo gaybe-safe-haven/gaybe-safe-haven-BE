@@ -13,7 +13,7 @@ type ShelterPost = {
 }
 
 describe('Post Shelter', () => {
-  it('create a shelter given a name and address', () => {
+  it('create a shelter given a name and address', (done) => {
     const shelterParams: ShelterPost = {
       name: 'Golden Sun',
       streetAddress: '1234 Black St',
@@ -30,10 +30,11 @@ describe('Post Shelter', () => {
       expect(err).to.be.null;
       // expect response to be 201 ok
       expect(res).to.have.status(201);
+      done();
     })
 
     // expect structure of the response
-    
+
     // check last shelter in database against shelter params
   })
 })
