@@ -25,5 +25,5 @@ shelterController.get('/:shelterId', async (req: Request, res: Response) => {
     }
   })
 
-  res.status(200).send(serializeShelter(shelter))
+  res.status(200).send({ data: serializeShelter(shelter) })
 })
