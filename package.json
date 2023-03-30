@@ -5,8 +5,8 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/server.ts",
-    "test": "dotenv -e .env.test npm run testRun",
-    "testRun": "mocha --require ts-node/register test/**/*-test.ts"
+    "testLocal": "dotenv -e .env.test npm run test",
+    "test": "mocha --require ts-node/register test/**/*-test.ts"
   },
   "keywords": [],
   "author": "",
