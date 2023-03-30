@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/server.ts",
-    "test": "mocha --require ts-node/register test/**/*-test.ts"
+    "test": "mocha --require ts-node/register --exit test/**/*-test.ts "
   },
   "keywords": [],
   "author": "",
