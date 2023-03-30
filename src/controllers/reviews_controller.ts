@@ -6,7 +6,6 @@ export const reviewController = express.Router();
 const prisma = new PrismaClient();
 
 reviewController.post('/', async (req, res) => {
-  // res.status(201).send('')
 
   let shelterId: any = req.body.shelterId;
   let cleanliness: any = req.body.cleanliness;
@@ -21,4 +20,5 @@ reviewController.post('/', async (req, res) => {
         staff: staff,
       },
     });
+    res.status(204).send();
 });
