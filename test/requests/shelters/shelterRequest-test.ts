@@ -15,11 +15,11 @@ type ShelterPost = {
 }
 
 describe('Post Shelter', () => {
-  beforeEach(() => {
-    const deleteReviews = prisma.review.deleteMany();
-    const deleteShelters = prisma.shelter.deleteMany();
-    prisma.$transaction([deleteReviews, deleteShelters])
-  })
+  // beforeEach(() => {
+  //   const deleteReviews = prisma.review.deleteMany();
+  //   const deleteShelters = prisma.shelter.deleteMany();
+  //   prisma.$transaction([deleteReviews, deleteShelters])
+  // })
   it('create a shelter given a name and address', (done) => {
     const shelterParams: ShelterPost = {
       name: 'Golden Sun',
