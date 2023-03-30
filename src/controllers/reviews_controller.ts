@@ -7,10 +7,10 @@ const prisma = new PrismaClient();
 
 reviewController.post('/', async (req, res) => {
 
-  let shelterId: any = req.body.shelterId;
-  let cleanliness: any = req.body.cleanliness;
-  let safety: any = req.body.safety;
-  let staff: any = req.body.staff;
+  let shelterId: number = req.body.shelterId;
+  let cleanliness: number = req.body.cleanliness;
+  let safety: number = req.body.safety;
+  let staff: number = req.body.staff;
 
   const review = await prisma.review.create({
       data: {
