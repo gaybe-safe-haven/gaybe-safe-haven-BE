@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/server.ts",
     "testLocal": "dotenv -e .env.test npm run test",
-    "test": "mocha --require ts-node/register test/**/*-test.ts",
+    "test": "mocha --file ./test/helper.ts --require ts-node/register test/**/*-test.ts",
     "migrateTest": "dotenv -e .env.test npx prisma migrate dev"
   },
   "keywords": [],
