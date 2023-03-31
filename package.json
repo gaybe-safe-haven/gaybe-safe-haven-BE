@@ -5,6 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/server.ts",
+    "testLocal": "dotenv -e .env.test npm run test",
     "test": "mocha --require ts-node/register test/**/*-test.ts"
   },
   "keywords": [],
@@ -23,6 +24,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.11.0",
+    "dotenv-cli": "^7.1.0",
     "@types/cors": "^2.8.13",
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",

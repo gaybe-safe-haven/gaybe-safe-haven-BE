@@ -10,11 +10,6 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
-
-
-// Example of route organizaiton for endpoints
-// app.use('api/v1/example', exampleController)
-
 // shelter endpoint
 app.use('/api/v1/shelters', shelterController);
 
