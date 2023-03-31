@@ -1,9 +1,7 @@
 import express from 'express';
-import { PrismaClient, Prisma } from '@prisma/client'
+import prisma from '../db/prisma.config';
 
 export const reviewController = express.Router();
-
-const prisma = new PrismaClient();
 
 reviewController.post('/', async (req, res) => {
 
