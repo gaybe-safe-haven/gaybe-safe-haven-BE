@@ -1,5 +1,5 @@
-import { ShelterWithRating } from '../shelter/shelter.service'
-import { Serialized, Serializer } from '../serializers/serializer.interfaces'
+import { ShelterWithRating } from '../shelter/shelter.types'
+import { Serialized, Serializer } from '../serializers/serializer.types'
 
 export const serializeShelter: Serializer<ShelterWithRating> = function (
   shelter: ShelterWithRating

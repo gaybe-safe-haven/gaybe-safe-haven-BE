@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import prisma from '../db/prisma.config';
-import { Shelter } from '@prisma/client';
+import { Shelter, ShelterWithRating } from '../shelter/shelter.types';
 import { serializeShelter } from '../serializers/shelter'
-import { addRatings, ShelterWithRating } from '../shelter/shelter.service'
+import { addRatings } from '../shelter/shelter.service'
 export const shelterController = express.Router();
 
 shelterController.post('/', async (req, res) => {
