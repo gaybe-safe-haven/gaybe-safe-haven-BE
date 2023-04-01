@@ -1,34 +1,14 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../src/app';
-import { beforeEach } from 'mocha';
 import prisma from '../../../src/db/prisma.config';
+import { ShelterPost } from '../../../src/shelter/shelter.types'
+import { ReviewPost } from '../../../src/reviews/review.types'
 
 chai.use(chaiHttp);
 
-type ShelterPost = {
-  name: string
-  streetAddress: string
-  state: string
-  zip: number
-  phoneNumber: string
-}
-
-//TODO: Move these separate file where both controllers and tests can use
-type ReviewPost = {
-  shelterId: number,
-  cleanliness?: number,
-  staff?: number,
-  safety?: number,
-}
-
 describe('Post Shelter', () => {
-  // beforeEach(() => {
-  //   const deleteReviews = prisma.review.deleteMany();
-  //   const deleteShelters = prisma.shelter.deleteMany();
-  //   prisma.$transaction([deleteReviews, deleteShelters])
-  // })
-  it('create a shelter given a name and address', (done) => {
+  it('create a shelter given a name and address', async() => {
     const shelterParams: ShelterPost = {
       name: 'Golden Sun',
       streetAddress: '1234 Black St',
@@ -38,36 +18,31 @@ describe('Post Shelter', () => {
     }
 
     // post to '/api/v1/shelters' with shelter params
-    chai
+    const res = await chai
     .request(app)
     .post('/api/v1/shelters')
     .send(shelterParams)
-    .end((_err, res) => {
+
       // expect response to be 201 ok
-      expect(res).to.have.status(201);
-      // look at body of response
-      expect(res.body).to.have.key('data');
+    expect(res).to.have.status(201);
 
-      
-      // expect structure of the response
-      expect(res.body.data.id).to.exist;
-      expect(res.body.data.id).to.be.a('number');
-      expect(res.body.data.type).to.equal('shelter');
-      expect(res.body.data.attributes.name).to.equal('Golden Sun');
-      expect(res.body.data.attributes.streetAddress).to.equal('1234 Black St');
-      expect(res.body.data.attributes.state).to.equal('NY');
-      expect(res.body.data.attributes.zip).to.equal(78123);
-      expect(res.body.data.attributes.phoneNumber).to.equal('2134568765');
-      expect(res.body.data.attributes.websiteUrl).to.equal(null);
-      expect(res.body.data.attributes.verified).to.equal(false);
-      expect(res.body.data.attributes.avgClean).to.equal(null);
-      expect(res.body.data.attributes.avgSafety).to.equal(null);
-      expect(res.body.data.attributes.avgStaff).to.equal(null);
-      done();
-    })
+    // look at body of response
+    expect(res.body).to.have.key('data');
 
-
-    // check last shelter in database against shelter params
+    // expect structure of the response
+    expect(res.body.data.id).to.exist;
+    expect(res.body.data.id).to.be.a('number');
+    expect(res.body.data.type).to.equal('shelter');
+    expect(res.body.data.attributes.name).to.equal('Golden Sun');
+    expect(res.body.data.attributes.streetAddress).to.equal('1234 Black St');
+    expect(res.body.data.attributes.state).to.equal('NY');
+    expect(res.body.data.attributes.zip).to.equal(78123);
+    expect(res.body.data.attributes.phoneNumber).to.equal('2134568765');
+    expect(res.body.data.attributes.websiteUrl).to.equal(null);
+    expect(res.body.data.attributes.verified).to.equal(false);
+    expect(res.body.data.attributes.avgClean).to.equal(null);
+    expect(res.body.data.attributes.avgSafety).to.equal(null);
+    expect(res.body.data.attributes.avgStaff).to.equal(null);
   })
 })
 
@@ -82,25 +57,24 @@ describe('GET shelters/:shelterid', () => {
     }
 
     const shelter = await prisma.shelter.create({ data: shelterParams })
+
     //Fetch shelter
-    chai
+    const res = await chai
     .request(app)
     .get(`/api/v1/shelters/${shelter.id}`)
-    .end((err, res) => {
-      expect(err).to.be.null;
-      expect(res).to.have.status(200);
-      expect(res).to.be.json;
-      expect(res.body).to.have.key('data');
-      expect(res.body.data.id).to.equal(shelter.id);
-      expect(res.body.data.type).to.equal('shelter');
-      expect(res.body.data.attributes.name).to.equal('Golden Sun');
-      expect(res.body.data.attributes.streetAddress).to.equal('1234 Black St');
-      expect(res.body.data.attributes.state).to.equal('NY');
-      expect(res.body.data.attributes.zip).to.equal(78123);
-      expect(res.body.data.attributes.avgClean).to.equal(null);
-      expect(res.body.data.attributes.avgSafety).to.equal(null);
-      expect(res.body.data.attributes.avgStaff).to.equal(null);
-    })
+
+    expect(res).to.have.status(200);
+    expect(res).to.be.json;
+    expect(res.body).to.have.key('data');
+    expect(res.body.data.id).to.equal(shelter.id);
+    expect(res.body.data.type).to.equal('shelter');
+    expect(res.body.data.attributes.name).to.equal('Golden Sun');
+    expect(res.body.data.attributes.streetAddress).to.equal('1234 Black St');
+    expect(res.body.data.attributes.state).to.equal('NY');
+    expect(res.body.data.attributes.zip).to.equal(78123);
+    expect(res.body.data.attributes.avgClean).to.equal(null);
+    expect(res.body.data.attributes.avgSafety).to.equal(null);
+    expect(res.body.data.attributes.avgStaff).to.equal(null);
   })
 
   it('can return a shelter with avg ratings', async () => {
@@ -130,23 +104,21 @@ describe('GET shelters/:shelterid', () => {
 
     await prisma.review.createMany({ data: [review1Params, review2Params]})
     
-    chai
+    const res = await chai
     .request(app)
     .get(`/api/v1/shelters/${shelter.id}`)
-    .end((err, res) => {
-      expect(err).to.be.null;
-      expect(res).to.have.status(200);
-      expect(res).to.be.json;
-      expect(res.body).to.have.key('data');
-      expect(res.body.data.id).to.equal(shelter.id);
-      expect(res.body.data.type).to.equal('shelter');
-      expect(res.body.data.attributes.name).to.equal('Golden Sun');
-      expect(res.body.data.attributes.streetAddress).to.equal('1234 Black St');
-      expect(res.body.data.attributes.state).to.equal('NY');
-      expect(res.body.data.attributes.zip).to.equal(78123);
-      expect(res.body.data.attributes.avgClean).to.equal(2.5);
-      expect(res.body.data.attributes.avgSafety).to.equal(6.3);
-      expect(res.body.data.attributes.avgStaff).to.equal(7.1);
-    })
+
+    expect(res).to.have.status(200);
+    expect(res).to.be.json;
+    expect(res.body).to.have.key('data');
+    expect(res.body.data.id).to.equal(shelter.id);
+    expect(res.body.data.type).to.equal('shelter');
+    expect(res.body.data.attributes.name).to.equal('Golden Sun');
+    expect(res.body.data.attributes.streetAddress).to.equal('1234 Black St');
+    expect(res.body.data.attributes.state).to.equal('NY');
+    expect(res.body.data.attributes.zip).to.equal(78123);
+    expect(res.body.data.attributes.avgClean).to.equal(2.5);
+    expect(res.body.data.attributes.avgSafety).to.equal(6.3);
+    expect(res.body.data.attributes.avgStaff).to.equal(7.1);
   })
 })
