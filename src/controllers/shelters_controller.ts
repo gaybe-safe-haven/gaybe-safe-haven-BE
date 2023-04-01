@@ -5,7 +5,7 @@ import { serializeShelter } from '../serializers/shelter'
 import { addRatings } from '../shelter/shelter.service'
 export const shelterController = express.Router();
 
-shelterController.post('/', async (req, res) => {
+shelterController.post('/', async (req: Request, res: Response) => {
   try { 
     const shelterData = req.body;
     const shelter: Shelter = await prisma.shelter.create({ data: shelterData });
