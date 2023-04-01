@@ -2,14 +2,16 @@ import express, { Request, Response } from 'express';
 import prisma from '../db/prisma.config';
 import { Shelter } from '@prisma/client';
 import { serializeShelter } from '../serializers/shelter'
+import { addRatings, ShelterWithRating } from '../shelter/shelter.service'
 export const shelterController = express.Router();
 
 shelterController.post('/', async (req, res) => {
   try { 
     const shelterData = req.body;
     const shelter: Shelter = await prisma.shelter.create({ data: shelterData });
+    const shelterWithRating: ShelterWithRating = await addRatings(shelter)
     res.status(201).send({
-      data: serializeShelter(shelter)
+      data: serializeShelter(shelterWithRating)
     });
   } catch (err) {
     res.status(500).send(err); 
@@ -19,11 +21,16 @@ shelterController.post('/', async (req, res) => {
 shelterController.get('/:shelterId', async (req: Request, res: Response) => {
   const id: number = parseInt(req.params.shelterId, 10)
 
-  const shelter: Shelter | null = await prisma.shelter.findUnique({
-    where: {
-      id: id
-    }
-  })
+  try{
+    const shelter: Shelter = await prisma.shelter.findUniqueOrThrow({
+      where: {
+        id: id
+      }
+    })
 
-  res.status(200).send({ data: serializeShelter(shelter) })
+    const shelterWithRating: ShelterWithRating = await addRatings(shelter)
+    res.status(200).send({ data: serializeShelter(shelterWithRating) })
+  } catch (err) {
+    res.status(404).send(err)
+  }
 })
