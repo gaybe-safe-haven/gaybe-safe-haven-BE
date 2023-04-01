@@ -1,12 +1,6 @@
-import { Shelter } from '@prisma/client'
+import { Shelter, ShelterWithRating } from './shelter.types'
 import prisma from '../db/prisma.config'
 
-
-export type ShelterWithRating = Omit<Shelter, "updatedAt" | "createdAt"> & {
-  avgClean: number | null;
-  avgSafety: number | null;
-  avgStaff: number | null;
-}
 
 export async function addRatings(shelterData: Shelter): Promise<ShelterWithRating>{
   const avgClean = await avgCleanRating(shelterData.id)
@@ -24,7 +18,7 @@ export async function addRatings(shelterData: Shelter): Promise<ShelterWithRatin
 async function avgCleanRating(shelterId: number): Promise<number | null>{
     const {_avg } = await prisma.review.aggregate({
       where: {
-        id: shelterId
+        shelterId: shelterId
       },
       _avg: {
         cleanliness: true
@@ -36,7 +30,7 @@ async function avgCleanRating(shelterId: number): Promise<number | null>{
 async function avgStaffRating(shelterId: number): Promise<number | null>{
     const {_avg } = await prisma.review.aggregate({
       where: {
-        id: shelterId
+        shelterId: shelterId
       },
       _avg: {
         staff: true
@@ -48,7 +42,7 @@ async function avgStaffRating(shelterId: number): Promise<number | null>{
 async function avgSafetyRating(shelterId: number): Promise<number | null>{
     const {_avg } = await prisma.review.aggregate({
       where: {
-        id: shelterId
+        shelterId: shelterId
       },
       _avg: {
         safety: true
