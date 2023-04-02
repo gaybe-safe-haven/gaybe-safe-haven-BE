@@ -1,7 +1,6 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../src/app';
-import { beforeEach } from 'mocha';
 import prisma from '../../../src/db/prisma.config';
 
 chai.use(chaiHttp);
