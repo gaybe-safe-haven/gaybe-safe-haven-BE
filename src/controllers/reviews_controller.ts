@@ -1,22 +1,20 @@
 import express from 'express';
 import prisma from '../db/prisma.config';
+import { Review } from '@prisma/client';
+import { serializeReview } from '../serializers/review';
 
 export const reviewController = express.Router();
 
 reviewController.post('/', async (req, res) => {
-
-  let shelterId: number = req.body.shelterId;
-  let cleanliness: number = req.body.cleanliness;
-  let safety: number = req.body.safety;
-  let staff: number = req.body.staff;
-
-  const review = await prisma.review.create({
-      data: {
-        shelterId: shelterId,
-        cleanliness: cleanliness,
-        safety: safety,
-        staff: staff,
-      },
+try {
+  const reviewData = req.body;
+  const review: Review = await prisma.review.create({ data: reviewData });
+    res.status(201).send({
+      data: serializeReview(review)
     });
-    res.status(204).send();
+
+  }
+  catch(err) {
+    res.status(500).send(err);
+  }
 });
