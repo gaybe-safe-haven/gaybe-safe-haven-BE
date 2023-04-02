@@ -44,6 +44,20 @@ describe('Post Shelter', () => {
     expect(res.body.data.attributes.avgSafety).to.equal(null);
     expect(res.body.data.attributes.avgStaff).to.equal(null);
   })
+
+  it('can return an error if given invalid post data', async() =>{
+    const shelterParams = {
+      name: 'Test',
+      streetAddress: '55555',
+      state: 'NY',
+      zip: 1,
+      phoneNumber: '2134568765'
+    }
+
+    prisma.shelter.create({
+      data: shelterParams
+    })
+  })
 })
 
 describe('GET shelters/:shelterid', () => {
@@ -128,6 +142,15 @@ describe('GET shelters/:shelterid', () => {
     .get('/api/v1/shelters/999999999')
 
     expect(res.status).to.equal(404)
-    console.log(res.body)
+    expect(res.body.error).to.equal('No Shelter found')
+  })
+
+  it('can return a validation error if the shelterId is not a number', async() => {
+    const res = await chai
+    .request(app)
+    .get('/api/v1/shelters/badString')
+
+    expect(res.status).to.equal(400)
+    expect(res.body.errors[0].message).to.equal('Expected number, received nan')
   })
 })
