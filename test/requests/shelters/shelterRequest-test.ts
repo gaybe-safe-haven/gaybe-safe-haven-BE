@@ -121,4 +121,13 @@ describe('GET shelters/:shelterid', () => {
     expect(res.body.data.attributes.avgSafety).to.equal(6.3);
     expect(res.body.data.attributes.avgStaff).to.equal(7.1);
   })
+
+  it('can return a 404 if the shelterId does not exist', async() => {
+    const res = await chai
+    .request(app)
+    .get('/api/v1/shelters/999999999')
+
+    expect(res.status).to.equal(404)
+    console.log(res.body)
+  })
 })
