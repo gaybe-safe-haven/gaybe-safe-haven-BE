@@ -10,6 +10,7 @@ export const serializeShelter: Serializer<ShelterWithRating> = function (
     attributes: {
       name: shelter.name,
       streetAddress: shelter.streetAddress,
+      city: shelter.city,
       state: shelter.state,
       zip: shelter.zip,
       websiteUrl: shelter.websiteUrl,

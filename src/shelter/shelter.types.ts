@@ -14,7 +14,9 @@ const shelterPostValidator = z.object({
     message: "Invalid US postal code",
   }),
   phoneNumber: z.coerce.string(),
-  websiteUrl: z.optional(z.string().url())
+  websiteUrl: z.optional(z.string().refine((value) => validator.isURL(value, { require_protocol: false }), {
+    message: "Invalid website URL",
+  })),
 })
 export type ShelterPost = z.infer<typeof shelterPostValidator>
 
