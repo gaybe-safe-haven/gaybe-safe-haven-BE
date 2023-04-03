@@ -1,9 +1,9 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import prisma from '../../src/db/prisma.config';
-import { ShelterPost, ShelterWithRating, Shelter } from '../../src/shelter/shelter.types'
-import { addRatings } from '../../src/shelter/shelter.service'
-import { ReviewPost } from '../../src/reviews/review.types'
+import { ShelterPost, ShelterWithRating, Shelter } from '../../../src/shelter/shelter.types'
+import { addRatings } from '../../../src/shelter/shelter.service'
+import { ReviewPost } from '../../../src/reviews/review.types'
 
 
 chai.use(chaiHttp);
