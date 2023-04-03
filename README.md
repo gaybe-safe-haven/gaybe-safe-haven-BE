@@ -24,6 +24,7 @@ POST https://gaybe-safe-haven.herokuapp.com/api/v1/shelters
 
 Example Request Body: 
    
+This body is REQUIRED in any request to create a shelter.     
 NOTE: websiteUrl key is optional and can be passed with a value of null or not included at all
    
 ```json
