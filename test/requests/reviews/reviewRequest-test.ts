@@ -29,7 +29,7 @@ const shelterData: ShelterPost = {
 }
 
 
-describe('Post Review', () => {
+describe('Post Review', async () => {
   let shelter: any;
 
   beforeEach(async () => {
@@ -44,36 +44,24 @@ describe('Post Review', () => {
       staff: 9.8 
     }
 
-    chai
+    const res = await chai
     .request(app)
     .post('/api/v1/reviews')
     .send(reviewData)
-    .end(async (err, res) => {
       expect(res).to.have.status(201);
-      expect(res.body).to.have.key('data');
 
-      expect(res.body.data).to.have.key('id');
       expect(res.body.data.id).to.be.a('number');
 
-      expect(res.body.data).to.have.key('type');
       expect(res.body.data.type).to.eq('review');
 
-      expect(res.body.data).to.have.key('attributes');
-      expect(res.body.data.attributes).to.be.a('hash');
-
-      expect(res.body.data.attributes).to.have.key('shelterId');
       expect(res.body.data.attributes.shelterId).to.be.a('number');
       expect(res.body.data.attributes.shelterId).to.eq(shelter.id);
 
-      expect(res.body.data.attributes).to.have.key('cleanliness');
       expect(res.body.data.attributes.cleanliness).to.eq(10);
 
-      expect(res.body.data.attributes).to.have.key('safety');
       expect(res.body.data.attributes.safety).to.eq(10)
 
-      expect(res.body.data.attributes).to.have.key('staff')
       expect(res.body.data.attributes.staff).to.eq(9.8)
 
-    })
   })
 })
