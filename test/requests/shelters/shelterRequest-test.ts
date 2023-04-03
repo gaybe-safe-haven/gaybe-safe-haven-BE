@@ -51,12 +51,46 @@ describe('Post Shelter', () => {
       streetAddress: '55555',
       state: 'NY',
       zip: 1,
+      phoneNumber: 2134568765
+    }
+
+    const res = await chai
+    .request(app)
+    .post('/api/v1/shelters')
+    .send(shelterParams)
+
+    expect(res).to.have.status(400)
+    expect(res.body.errors)
+  })
+
+  it('can return an error if given duplicate shelter data', async() => {
+    const shelterParams = {
+      name: 'Test',
+      streetAddress: '55555',
+      state: 'NY',
+      zip: 12334,
       phoneNumber: '2134568765'
     }
 
-    prisma.shelter.create({
-      data: shelterParams
-    })
+    await chai
+    .request(app)
+    .post('/api/v1/shelters')
+    .send(shelterParams)
+
+    const shelterParams2 = {
+      name: 'Test',
+      streetAddress: '55555',
+      state: 'NY',
+      zip: 12334,
+      phoneNumber: '2134568765'
+    }
+
+    const res = await chai
+    .request(app)
+    .post('/api/v1/shelters')
+    .send(shelterParams2)
+
+    expect(res).to.have.status(422)
   })
 })
 
