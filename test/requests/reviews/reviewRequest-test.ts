@@ -2,23 +2,10 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../src/app';
 import prisma from '../../../src/db/prisma.config';
+import { ShelterPost } from '../../../src/shelter/shelter.types'
+import { ReviewPost } from '../../../src/reviews/review.types'
 
 chai.use(chaiHttp);
-
-type ReviewPost = {
-  shelterId: number
-  cleanliness: number
-  safety: number
-  staff: number
-}
-
-type ShelterPost = {
-  name: string
-  streetAddress: string
-  state: string
-  zip: number
-  phoneNumber: string
-}
 
 const shelterData: ShelterPost = {
   name: 'Queer Little Fellas',
