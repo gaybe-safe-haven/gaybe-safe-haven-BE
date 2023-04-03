@@ -65,7 +65,6 @@ describe('Post Shelter', () => {
     .post('/api/v1/shelters')
     .send(shelterParams)
     
-    console.log(res.body)
     // expect response to be 201 ok
     expect(res).to.have.status(201);
     // look at body of response
@@ -85,12 +84,12 @@ describe('Post Shelter', () => {
     expect(res.body.data.attributes.verified).to.equal(false);
   })
 
-  it('can return an error if given invalid post data', async() =>{
+  it('can return errors if given invalid zip code and missing a city', async() =>{
     const shelterParams = {
       name: 'Test',
       streetAddress: '55555',
       state: 'NY',
-      zip: 1,
+      zip: '1',
       phoneNumber: 2134568765
     }
 
@@ -100,7 +99,28 @@ describe('Post Shelter', () => {
     .send(shelterParams)
 
     expect(res).to.have.status(400)
-    expect(res.body.errors)
+    expect(res.body.errors[0].message).to.equal('Required')
+    expect(res.body.errors[1].message).to.equal('Invalid US postal code')
+  })
+  
+  it('can return an error if given invalid website code', async() =>{
+    const shelterParams = {
+      name: 'Test',
+      streetAddress: '55555',
+      state: 'NY',
+      city: 'Albany',
+      zip: '50125',
+      phoneNumber: 2134568765,
+      websiteUrl: 'notaWebsite'
+    }
+
+    const res = await chai
+    .request(app)
+    .post('/api/v1/shelters')
+    .send(shelterParams)
+
+    expect(res).to.have.status(400)
+    expect(res.body.errors[0].message).to.equal('Invalid website URL')
   })
 
   it('can return an error if given duplicate shelter data', async() => {

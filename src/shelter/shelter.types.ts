@@ -9,7 +9,6 @@ const shelterPostValidator = z.object({
   streetAddress: z.string(),
   state: z.string(), 
   city: z.string(),
-  // zip: z.coerce.number().min(10000).max(99999),
   zip: z.string().refine((value) => validator.isPostalCode(value, "US"), {
     message: "Invalid US postal code",
   }),
