@@ -51,8 +51,9 @@ Copy and Paste Example above ^^^
    
 # RESTful Endpoints
 A collection of endpoints exposed on this API with example requests and responses.      
-Production Domain url: https://gaybe-safe-haven.herokuapp.com
-### Get a User
+Production Domain url: https://gaybe-safe-haven.herokuapp.com   
+
+### Post a Shelter
 
 
 ```http
