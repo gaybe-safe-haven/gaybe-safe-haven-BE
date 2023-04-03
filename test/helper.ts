@@ -1,8 +1,8 @@
 import prisma from '../src/db/prisma.config';
 
 
-beforeEach(() => {
+beforeEach(async () => {
   const deleteReviews = prisma.review.deleteMany();
   const deleteShelters = prisma.shelter.deleteMany();
-  prisma.$transaction([deleteReviews, deleteShelters])
+  await prisma.$transaction([deleteReviews, deleteShelters])
 })

@@ -29,7 +29,7 @@ const shelterData: ShelterPost = {
 }
 
 
-describe('Post Review', async () => {
+describe('Post Review', () => {
   let shelter: any;
 
   beforeEach(async () => {
