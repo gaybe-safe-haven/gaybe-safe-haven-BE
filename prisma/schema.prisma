@@ -17,7 +17,8 @@ model Shelter {
     name String
     streetAddress String
     state String
-    zip Int
+    city String
+    zip String
     websiteUrl String?
     phoneNumber String?
     verified Boolean @default(false)
