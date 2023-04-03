@@ -36,3 +36,17 @@ shelterController.get('/:shelterId', async (req: Request, res: Response) => {
   }
 })
 
+shelterController.get('/', async (req: Request, res: Response) => {
+  try {
+    const shelters: Shelter[] = await prisma.shelter.findMany();
+    const sheltersWithRating: ShelterWithRating[] = await Promise.all(
+      shelters.map((shelter) => addRatings(shelter))
+    );
+    const serializedShelters: any[] = sheltersWithRating.map((shelter) =>
+      serializeShelter(shelter)
+    );
+    res.status(200).send({ data: serializedShelters });
+  } catch (err) {
+    res.status(404).send(err);
+  }
+});
