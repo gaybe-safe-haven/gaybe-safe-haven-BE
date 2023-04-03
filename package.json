@@ -9,6 +9,7 @@
     "test": "mocha --file ./test/helper.ts --require ts-node/register test/**/*-test.ts",
     "start": "tsc && node dist/server.js",
     "migrateTest": "dotenv -e .env.test npx prisma migrate dev"
+
   },
   "keywords": [],
   "author": "",
