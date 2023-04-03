@@ -35,7 +35,9 @@ NOTE: websiteUrl key is optional and can be passed with a value of null or not i
     "phoneNumber": "Test Phone4",
     "websiteUrl": "www.fake.com4"
 }
-```
+```   
+   
+Example Response:   
 
 ```json
 
