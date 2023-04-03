@@ -61,14 +61,13 @@ describe('Post Shelter', () => {
     .request(app)
     .post('/api/v1/shelters')
     .send(shelterParams)
-
-      // expect response to be 201 ok
+    
+    // expect response to be 201 ok
     expect(res).to.have.status(201);
-      // look at body of response
+    // look at body of response
     expect(res.body).to.have.key('data');
 
-
-      // expect structure of the response
+    // expect structure of the response
     expect(res.body.data.id).to.exist;
     expect(res.body.data.id).to.be.a('number');
     expect(res.body.data.type).to.equal('shelter');
