@@ -113,3 +113,97 @@ Example Response:
 
 ---   
 
+### Get All Shelters
+
+
+```http
+POST https://gaybe-safe-haven.herokuapp.com/api/v1/shelters
+```
+
+<details>
+<summary>Example</summary>
+<br>
+    
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `Ok` |
+
+ 
+Example Response:   
+
+```json
+
+{
+    "data": [
+        {
+            "id": 1,
+            "type": "shelter",
+            "attributes": {
+                "name": "Golden Sun",
+                "streetAddress": "1234 Black St",
+                "state": "NY",
+                "zip": 78123,
+                "websiteUrl": null,
+                "phoneNumber": "2134568765",
+                "verified": false,
+                "avgStaff": null,
+                "avgClean": null,
+                "avgSafety": null
+            }
+        },
+        {
+            "id": 2,
+            "type": "shelter",
+            "attributes": {
+                "name": "Test Shelter 2",
+                "streetAddress": "Test Street",
+                "state": "Test State",
+                "zip": 12345235,
+                "websiteUrl": null,
+                "phoneNumber": "Test Phone",
+                "verified": false,
+                "avgStaff": null,
+                "avgClean": null,
+                "avgSafety": null
+            }
+        },
+        {
+            "id": 3,
+            "type": "shelter",
+            "attributes": {
+                "name": "Test Shelter 2",
+                "streetAddress": "Test Street",
+                "state": "Test State",
+                "zip": 12345235,
+                "websiteUrl": "www.fake.com",
+                "phoneNumber": "Test Phone",
+                "verified": false,
+                "avgStaff": null,
+                "avgClean": null,
+                "avgSafety": null
+            }
+        },
+        {
+            "id": 4,
+            "type": "shelter",
+            "attributes": {
+                "name": "Test Shelter 4",
+                "streetAddress": "Test Street4",
+                "state": "Test State4",
+                "zip": 12345235,
+                "websiteUrl": "www.fake.com4",
+                "phoneNumber": "Test Phone4",
+                "verified": false,
+                "avgStaff": null,
+                "avgClean": null,
+                "avgSafety": null
+            }
+        }
+    ]
+}
+```
+
+</details>
+
+---
