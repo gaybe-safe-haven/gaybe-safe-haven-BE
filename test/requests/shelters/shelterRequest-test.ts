@@ -46,7 +46,7 @@ describe('Post Shelter', () => {
     expect(res.body.data.attributes.avgStaff).to.equal(null);
   })
 
-  it('create a shelter given a name and address and phone number AND a websiteurl', (done) => {
+  it('create a shelter given a name and address and phone number AND a websiteurl', async() => {
     const shelterParams: ShelterPost = {
       name: 'Golden Sun',
       streetAddress: '1234 Black St',
