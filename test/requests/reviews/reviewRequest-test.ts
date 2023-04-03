@@ -15,7 +15,6 @@ const shelterData: ShelterPost = {
   phoneNumber: '1234567890'
 }
 
-
 describe('Post Review', () => {
   let shelter: any;
 
@@ -50,5 +49,33 @@ describe('Post Review', () => {
 
       expect(res.body.data.attributes.staff).to.eq(9.8)
 
+  })
+
+  it('can create a review with null values', async () => {
+    const reviewData: ReviewPost = {
+      shelterId: shelter.id,
+      cleanliness: null,
+      safety: null,
+      staff: null 
+    }
+
+    const res = await chai
+    .request(app)
+    .post('/api/v1/reviews')
+    .send(reviewData)
+      expect(res).to.have.status(201);
+
+      expect(res.body.data.id).to.be.a('number');
+
+      expect(res.body.data.type).to.eq('review');
+
+      expect(res.body.data.attributes.shelterId).to.be.a('number');
+      expect(res.body.data.attributes.shelterId).to.eq(shelter.id);
+
+      expect(res.body.data.attributes.cleanliness).to.eq(null);
+
+      expect(res.body.data.attributes.safety).to.eq(null)
+
+      expect(res.body.data.attributes.staff).to.eq(null)
   })
 })
