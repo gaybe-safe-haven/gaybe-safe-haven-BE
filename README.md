@@ -1,3 +1,6 @@
+
+# gaybe-safe-haven-BE
+=======
    If further endpoint documentation is to be added, copy and paste the following template to the bottom of the README and fill out.   
    
 ---
@@ -109,5 +112,4 @@ Example Response:
 </details>
 
 ---   
-
 
