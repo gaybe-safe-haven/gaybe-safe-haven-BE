@@ -117,7 +117,7 @@ Example Response:
 
 
 ```http
-POST https://gaybe-safe-haven.herokuapp.com/api/v1/shelters
+   GET https://gaybe-safe-haven.herokuapp.com/api/v1/shelters
 ```
 
 <details>
