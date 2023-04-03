@@ -23,6 +23,8 @@ model Shelter {
     phoneNumber String?
     verified Boolean @default(false)
     reviews Review[]
+
+    @@unique(fields: [streetAddress, state, zip], name: "location")
   }
 
 model Review {

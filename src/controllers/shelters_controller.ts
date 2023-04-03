@@ -9,14 +9,14 @@ export const shelterController = express.Router();
 
 shelterController.post('/', async (req: Request, res: Response) => {
   try { 
-    const shelterData = req.body;
+    const shelterData = shelterValidators.postData.parse(req.body) 
     const shelter: Shelter = await prisma.shelter.create({ data: shelterData });
     const shelterWithRating: ShelterWithRating = await addRatings(shelter)
     res.status(201).send({
       data: serializeShelter(shelterWithRating)
     });
   } catch (err) {
-    res.status(500).send(err); 
+    errorHandler(err, res)
   }
 })
 
