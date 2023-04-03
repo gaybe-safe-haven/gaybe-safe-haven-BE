@@ -24,7 +24,7 @@ model Shelter {
     verified Boolean @default(false)
     reviews Review[]
 
-    @@unique(fields: [streetAddress, state, zip], name: "location")
+    @@unique(fields: [streetAddress, state, zip, city], name: "location")
   }
 
 model Review {
