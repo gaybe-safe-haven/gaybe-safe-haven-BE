@@ -61,14 +61,13 @@ describe('Post Shelter', () => {
     .request(app)
     .post('/api/v1/shelters')
     .send(shelterParams)
-
-      // expect response to be 201 ok
+    
+    // expect response to be 201 ok
     expect(res).to.have.status(201);
-      // look at body of response
+    // look at body of response
     expect(res.body).to.have.key('data');
 
-
-      // expect structure of the response
+    // expect structure of the response
     expect(res.body.data.id).to.exist;
     expect(res.body.data.id).to.be.a('number');
     expect(res.body.data.type).to.equal('shelter');
@@ -156,6 +155,24 @@ describe('GET shelters/:shelterid', () => {
     expect(res.body.data.attributes.avgClean).to.equal(2.5);
     expect(res.body.data.attributes.avgSafety).to.equal(6.3);
     expect(res.body.data.attributes.avgStaff).to.equal(7.1);
+  })
+
+  it('can return a 404 if the shelterId does not exist', async() => {
+    const res = await chai
+    .request(app)
+    .get('/api/v1/shelters/999999999')
+
+    expect(res.status).to.equal(404)
+    expect(res.body.error).to.equal('No Shelter found')
+  })
+
+  it('can return a validation error if the shelterId is not a number', async() => {
+    const res = await chai
+    .request(app)
+    .get('/api/v1/shelters/badString')
+
+    expect(res.status).to.equal(400)
+    expect(res.body.errors[0].message).to.equal('Expected number, received nan')
   })
 })
 
