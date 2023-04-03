@@ -57,7 +57,7 @@ describe('Post Shelter', () => {
     }
 
     // post to '/api/v1/shelters' with shelter params
-    const rest = await chai
+    const res = await chai
     .request(app)
     .post('/api/v1/shelters')
     .send(shelterParams)
