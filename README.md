@@ -79,13 +79,13 @@ NOTE: websiteUrl key is optional and can be passed with a value of null or not i
    
 ```json
 {
-    "name": "Test Shelter 4",
-    "streetAddress": "Test Street4",
-    "state": "Test State4",
-    "city": "Test City
-    "zip": 12345235,
-    "phoneNumber": "Test Phone4",
-    "websiteUrl": "www.fake.com4"
+    "name": "Thrive Youth Center",
+    "streetAddress": "1 Haven for Hope Way",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78207",
+    "phoneNumber": "312 234-1234",
+    "websiteUrl": "thriveyouthcenter.org"
 }
 ```   
    
@@ -95,17 +95,20 @@ Example Response:
 
 {
     "data": {
-        "id": 4,
+        "id": 1,
         "type": "shelter",
         "attributes": {
-            "name": "Test Shelter 4",
-            "streetAddress": "Test Street4",
-            "state": "Test State4",
-            "city": "Test City"
-            "zip": 12345235,
-            "websiteUrl": "www.fake.com4",
-            "phoneNumber": "Test Phone4",
-            "verified": false
+            "name": "Thrive Youth Center",
+            "streetAddress": "1 Haven for Hope Way",
+            "city": "San Antonio",
+            "state": "TX",
+            "zip": "78207",
+            "websiteUrl": "thriveyouthcenter.org",
+            "phoneNumber": "312 234-1234",
+            "verified": false,
+            "avgStaff": null,
+            "avgClean": null,
+            "avgSafety": null
         }
     }
 }
@@ -142,60 +145,13 @@ Example Response:
             "id": 1,
             "type": "shelter",
             "attributes": {
-                "name": "Golden Sun",
-                "streetAddress": "1234 Black St",
-                "state": "NY",
-                "zip": 78123,
-                "websiteUrl": null,
-                "phoneNumber": "2134568765",
-                "verified": false,
-                "avgStaff": null,
-                "avgClean": null,
-                "avgSafety": null
-            }
-        },
-        {
-            "id": 2,
-            "type": "shelter",
-            "attributes": {
-                "name": "Test Shelter 2",
-                "streetAddress": "Test Street",
-                "state": "Test State",
-                "zip": 12345235,
-                "websiteUrl": null,
-                "phoneNumber": "Test Phone",
-                "verified": false,
-                "avgStaff": null,
-                "avgClean": null,
-                "avgSafety": null
-            }
-        },
-        {
-            "id": 3,
-            "type": "shelter",
-            "attributes": {
-                "name": "Test Shelter 2",
-                "streetAddress": "Test Street",
-                "state": "Test State",
-                "zip": 12345235,
-                "websiteUrl": "www.fake.com",
-                "phoneNumber": "Test Phone",
-                "verified": false,
-                "avgStaff": null,
-                "avgClean": null,
-                "avgSafety": null
-            }
-        },
-        {
-            "id": 4,
-            "type": "shelter",
-            "attributes": {
-                "name": "Test Shelter 4",
-                "streetAddress": "Test Street4",
-                "state": "Test State4",
-                "zip": 12345235,
-                "websiteUrl": "www.fake.com4",
-                "phoneNumber": "Test Phone4",
+                "name": "Thrive Youth Center",
+                "streetAddress": "1 Haven for Hope Way",
+                "city": "San Antonio",
+                "state": "TX",
+                "zip": "78207",
+                "websiteUrl": "thriveyouthcenter.org",
+                "phoneNumber": "312 234-1234",
                 "verified": false,
                 "avgStaff": null,
                 "avgClean": null,
