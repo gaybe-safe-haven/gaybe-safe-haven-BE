@@ -11,7 +11,8 @@ const shelterData: ShelterPost = {
   name: 'Queer Little Fellas',
   streetAddress: '1234 Gay St.',
   state: 'CO',
-  zip: 42069,
+  city: 'Denver',
+  zip: '42069',
   phoneNumber: '1234567890'
 }
 

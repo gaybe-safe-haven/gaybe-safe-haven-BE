@@ -17,18 +17,13 @@ describe('addRatings function', () => {
       name: 'Golden Sun',
       streetAddress: '1234 Black St',
       state: 'NY',
-      zip: 78123,
+      city: "Albany",
+      zip: '78123',
       phoneNumber: '2134568765'
     };
 
     shelter = await prisma.shelter.create({ data: shelterParams });
   });
-
-  // afterEach(async () => {
-  //   if(shelter){
-  //     await prisma.shelter.delete({ where: { id: shelter.id } });
-  //   }
-  // });
 
   it('can add null ratings to a shelter object', async() => {
    

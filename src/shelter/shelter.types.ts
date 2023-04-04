@@ -1,5 +1,6 @@
 import { Shelter as PrismaShelter } from '@prisma/client'
 import { z } from 'zod'
+import validator from 'validator'
 
 export type Shelter = Omit<PrismaShelter, "updatedAt" | "createdAt">
 
@@ -7,9 +8,14 @@ const shelterPostValidator = z.object({
   name: z.string(),
   streetAddress: z.string(),
   state: z.string(), 
-  zip: z.coerce.number().min(10000).max(99999),
+  city: z.string(),
+  zip: z.string().refine((value) => validator.isPostalCode(value, "US"), {
+    message: "Invalid US postal code",
+  }),
   phoneNumber: z.coerce.string(),
-  websiteUrl: z.optional(z.string())
+  websiteUrl: z.optional(z.string().refine((value) => validator.isURL(value, { require_protocol: false }), {
+    message: "Invalid website URL",
+  })),
 })
 export type ShelterPost = z.infer<typeof shelterPostValidator>
 
