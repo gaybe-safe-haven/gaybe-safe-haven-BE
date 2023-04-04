@@ -82,6 +82,7 @@ NOTE: websiteUrl key is optional and can be passed with a value of null or not i
     "name": "Test Shelter 4",
     "streetAddress": "Test Street4",
     "state": "Test State4",
+    "city": "Test City
     "zip": 12345235,
     "phoneNumber": "Test Phone4",
     "websiteUrl": "www.fake.com4"
@@ -100,6 +101,7 @@ Example Response:
             "name": "Test Shelter 4",
             "streetAddress": "Test Street4",
             "state": "Test State4",
+            "city": "Test City"
             "zip": 12345235,
             "websiteUrl": "www.fake.com4",
             "phoneNumber": "Test Phone4",
@@ -207,3 +209,106 @@ Example Response:
 </details>
 
 ---
+   ### Get a Shelter
+
+
+```http
+GET https://gaybe-safe-haven.herokuapp.com/api/v1/shelters/1
+```
+
+<details>
+<summary>Example</summary>
+<br>
+    
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `Ok` |
+
+Example Request Body: 
+   
+<Any helpful explantion of required body or params>   
+NOTE: <optional params or keys noted>
+   
+Example Response:   
+
+```json
+
+{    
+   "data": {
+        "id": 1,
+        "type": "shelter",
+        "attributes": {
+            "name": "Thrive Youth Center",
+            "streetAddress": "1 Haven for Hope Way",
+            "city": "San Antonio",
+            "state": "TX",
+            "zip": "78207",
+            "websiteUrl": "thriveyouthcenter.org",
+            "phoneNumber": "312 234-1234",
+            "verified": false,
+            "avgStaff": null,
+            "avgClean": null,
+            "avgSafety": null
+        }
+    } 
+}
+```
+
+</details>
+
+---
+
+### Post a Shelter Review
+
+```http
+POST https://gaybe-safe-haven.herokuapp.com/api/v1/reviews
+```
+
+<details>
+<summary>Example</summary>
+<br>
+    
+
+| Code | Description |
+| :--- | :--- |
+| 201 | `Created` |
+
+Example Request Body: 
+   
+<Any helpful explantion of required body or params>   
+NOTE: <optional params or keys noted>
+   
+```json
+{
+    "shelterId": 1,
+    "cleanliness": 6.7,
+    "staff": 5.3,
+    "safety": 7.8
+}
+```   
+   
+Example Response:   
+
+```json
+
+{
+    "data": {
+        "id": 3,
+        "type": "review",
+        "attributes": {
+            "shelterId": 1,
+            "cleanliness": 6.7,
+            "staff": 5.3,
+            "safety": 7.8
+        }
+    }   
+}
+```
+
+</details>
+
+---
+    
+<br>
+<br>
