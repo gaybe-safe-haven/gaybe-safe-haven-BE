@@ -23,6 +23,8 @@ function serializePrismaError(error: Prisma.PrismaClientKnownRequestError){
   switch(error.code){
     case 'P2002':
       return { error: { status: 422, code: error.code, message: "Unique constraint failed. Shelter already exists at this location"}} 
+    case 'P2003':
+      return {error: { status: 422, code: error.code, message: "Foreign Key constraint failed. Attempted to rate shelter that does not exist"}}
     case 'P2025':
       return { error: { status: 404, code: error.code, message: "Resource not found"}} 
     default:
