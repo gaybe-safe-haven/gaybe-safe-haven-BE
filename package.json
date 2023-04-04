@@ -9,7 +9,8 @@
     "test": "mocha --file ./test/helper.ts --require ts-node/register 'test/**/*-test.ts'",
     "test-cov": "nyc --reporter=text --reporter=html mocha --file ./test/helper.ts --require ts-node/register 'test/**/*-test.ts'",
     "start": "tsc && node dist/server.js",
-    "migrateTest": "dotenv -e .env.test npx prisma migrate dev"
+    "migrateTest": "dotenv -e .env.test npx prisma migrate dev",
+    "resetTest": "dotenv -e .env.test npx prisma migrate reset"
   },
   "keywords": [],
   "author": "",
