@@ -4,6 +4,7 @@ import { Shelter, ShelterWithRating, shelterValidators } from '../shelter/shelte
 import { serializeShelter } from '../serializers/shelter'
 import { errorHandler } from '../errors/errorHandler'
 import { addRatings } from '../shelter/shelter.service'
+import { Serialized } from '../serializers/serializer.types'
 
 export const shelterController = express.Router();
 
@@ -42,11 +43,11 @@ shelterController.get('/', async (req: Request, res: Response) => {
     const sheltersWithRating: ShelterWithRating[] = await Promise.all(
       shelters.map((shelter) => addRatings(shelter))
     );
-    const serializedShelters: any[] = sheltersWithRating.map((shelter) =>
+    const serializedShelters: Serialized<ShelterWithRating>[] = sheltersWithRating.map((shelter) =>
       serializeShelter(shelter)
     );
     res.status(200).send({ data: serializedShelters });
   } catch (err) {
-    res.status(404).send(err);
+    errorHandler(err, res);
   }
 });
