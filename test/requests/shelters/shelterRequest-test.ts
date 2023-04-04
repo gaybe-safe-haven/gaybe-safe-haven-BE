@@ -100,7 +100,9 @@ describe('Post Shelter', () => {
 
     expect(res).to.have.status(400)
     expect(res.body.errors[0].message).to.equal('Required')
+    expect(res.body.errors[0].field).to.equal('city')
     expect(res.body.errors[1].message).to.equal('Invalid US postal code')
+    expect(res.body.errors[1].field).to.equal('zip')
   })
   
   it('can return an error if given invalid website code', async() =>{
@@ -120,6 +122,7 @@ describe('Post Shelter', () => {
     .send(shelterParams)
 
     expect(res).to.have.status(400)
+    expect(res.body.errors[0].field).to.equal('websiteUrl')
     expect(res.body.errors[0].message).to.equal('Invalid website URL')
   })
 
@@ -152,7 +155,8 @@ describe('Post Shelter', () => {
     .post('/api/v1/shelters')
     .send(shelterParams2)
 
-    expect(res).to.have.status(422)
+    expect(res.status).to.equal(422)
+    expect(res.body.error.message).to.equal('Unique constraint failed. Shelter already exists at this location')
   })
 })
 
@@ -242,7 +246,7 @@ describe('GET shelters/:shelterid', () => {
     .get('/api/v1/shelters/999999999')
 
     expect(res.status).to.equal(404)
-    expect(res.body.error).to.equal('No Shelter found')
+    expect(res.body.error.message).to.equal('Resource not found')
   })
 
   it('can return a validation error if the shelterId is not a number', async() => {

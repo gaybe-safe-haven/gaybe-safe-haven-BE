@@ -1,17 +1,31 @@
 import { Response } from 'express'
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client'
 import { ZodError } from 'zod'
 
 export function errorHandler(err: any, res: Response) {
   if (err instanceof ZodError) {
-    res.status(400).send({ errors: err.issues })
+    res.status(400).send({ errors: serializeZodError(err) })
   } else if (err instanceof Prisma.PrismaClientKnownRequestError) {
-    if (err.code === 'P2002') {
-      res.status(422).send({ error: err.message })
-    } else {
-      res.status(404).send({ error: err.message })
-    }
+    const error = serializePrismaError(err)
+    res.status(error.error.status).send(error)
   } else {
     res.status(500).send({ error: 'Internal server error' })
+  }
+}
+
+function serializeZodError(errors: ZodError) {
+  return errors.issues.map((error) => {
+    return { ...error, field: error.path[0] }
+  })
+}
+
+function serializePrismaError(error: Prisma.PrismaClientKnownRequestError){
+  switch(error.code){
+    case 'P2002':
+      return { error: { status: 422, code: error.code, message: "Unique constraint failed. Shelter already exists at this location"}} 
+    case 'P2025':
+      return { error: { status: 404, code: error.code, message: "Resource not found"}} 
+    default:
+      return { error: { status: 400, code: error.code, message: error.message}}
   }
 }
