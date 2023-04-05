@@ -25,7 +25,7 @@ export const shelterValidators = {
 }
 
 export type ShelterWithRating = Shelter & {
-  avgClean: number | null;
-  avgSafety: number | null;
-  avgStaff: number | null;
+  avgClean: string | null;
+  avgSafety: string | null;
+  avgStaff: string | null;
 }

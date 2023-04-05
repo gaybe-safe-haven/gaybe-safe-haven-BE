@@ -54,9 +54,9 @@ describe('addRatings function', () => {
     
     const shelterWithRatings: ShelterWithRating = await addRatings(shelter)
 
-    expect(shelterWithRatings.avgClean).to.equal(2.5)
-    expect(shelterWithRatings.avgSafety).to.equal(6.3)
-    expect(shelterWithRatings.avgStaff).to.equal(7.1)
+    expect(shelterWithRatings.avgClean).to.equal('2.5')
+    expect(shelterWithRatings.avgSafety).to.equal('6.3')
+    expect(shelterWithRatings.avgStaff).to.equal('7.1')
   })
 })
 

@@ -236,9 +236,9 @@ describe('GET shelters/:shelterid', () => {
     expect(res.body.data.attributes.state).to.equal('NY');
     expect(res.body.data.attributes.city).to.equal('Albany');
     expect(res.body.data.attributes.zip).to.equal('78123');
-    expect(res.body.data.attributes.avgClean).to.equal(2.5);
-    expect(res.body.data.attributes.avgSafety).to.equal(6.3);
-    expect(res.body.data.attributes.avgStaff).to.equal(7.1);
+    expect(res.body.data.attributes.avgClean).to.equal('2.5');
+    expect(res.body.data.attributes.avgSafety).to.equal('6.3');
+    expect(res.body.data.attributes.avgStaff).to.equal('7.1');
   })
 
   it('can return a 404 if the shelterId does not exist', async() => {
@@ -318,9 +318,9 @@ describe('GET shelters', () => {
     expect(res.body.data[0].attributes.state).to.equal('NY');
     expect(res.body.data[1].attributes.city).to.equal('Anaheim');
     expect(res.body.data[0].attributes.zip).to.equal('78123');
-    expect(res.body.data[0].attributes.avgClean).to.equal(1.5);
-    expect(res.body.data[0].attributes.avgSafety).to.equal(9.5);
-    expect(res.body.data[0].attributes.avgStaff).to.equal(8.0);
+    expect(res.body.data[0].attributes.avgClean).to.equal('1.5');
+    expect(res.body.data[0].attributes.avgSafety).to.equal('9.5');
+    expect(res.body.data[0].attributes.avgStaff).to.equal('8.0');
 
     expect(res.body.data[1].type).to.equal('shelter');
     expect(res.body.data[1].id).to.equal(shelter2.id);
@@ -329,8 +329,8 @@ describe('GET shelters', () => {
     expect(res.body.data[1].attributes.state).to.equal('CA');
     expect(res.body.data[1].attributes.city).to.equal('Anaheim');
     expect(res.body.data[1].attributes.zip).to.equal('23415');
-    expect(res.body.data[1].attributes.avgClean).to.equal(3.5);
-    expect(res.body.data[1].attributes.avgSafety).to.equal(3.1);
-    expect(res.body.data[1].attributes.avgStaff).to.equal(6.2);
+    expect(res.body.data[1].attributes.avgClean).to.equal('3.5');
+    expect(res.body.data[1].attributes.avgSafety).to.equal('3.1');
+    expect(res.body.data[1].attributes.avgStaff).to.equal('6.2');
   })
 })
