@@ -16,7 +16,8 @@ describe('Post Shelter', () => {
       state: 'NY',
       city: 'Albany',
       zip: '78123',
-      phoneNumber: '2134568765'
+      phoneNumber: '2134568765',
+      websiteUrl: ''
     }
 
     // post to '/api/v1/shelters' with shelter params
@@ -41,7 +42,7 @@ describe('Post Shelter', () => {
     expect(res.body.data.attributes.city).to.equal('Albany');
     expect(res.body.data.attributes.zip).to.equal('78123');
     expect(res.body.data.attributes.phoneNumber).to.equal('2134568765');
-    expect(res.body.data.attributes.websiteUrl).to.equal(null);
+    expect(res.body.data.attributes.websiteUrl).to.equal('');
     expect(res.body.data.attributes.verified).to.equal(false);
     expect(res.body.data.attributes.avgClean).to.equal(null);
     expect(res.body.data.attributes.avgSafety).to.equal(null);
