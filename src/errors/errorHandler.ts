@@ -9,7 +9,7 @@ export function errorHandler(err: any, res: Response) {
     const error = serializePrismaError(err)
     res.status(error.error.status).send(error)
   } else {
-    res.status(500).send({ error: 'Internal server error' })
+    res.status(500).send({ error: { status: 500, message: 'Internal server error' }})
   }
 }
 
