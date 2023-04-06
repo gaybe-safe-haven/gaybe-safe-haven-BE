@@ -15,7 +15,7 @@ export async function addRatings(shelterData: Shelter): Promise<ShelterWithRatin
   }
 }
 
-async function avgCleanRating(shelterId: number): Promise<number | null>{
+async function avgCleanRating(shelterId: number): Promise<string | null>{
     const {_avg } = await prisma.review.aggregate({
       where: {
         shelterId: shelterId
@@ -24,10 +24,14 @@ async function avgCleanRating(shelterId: number): Promise<number | null>{
         cleanliness: true
       }
     })
-  return _avg.cleanliness
+  if(_avg.cleanliness){
+    return _avg.cleanliness.toFixed(1)
+  } else {
+    return null
+  }
 } 
 
-async function avgStaffRating(shelterId: number): Promise<number | null>{
+async function avgStaffRating(shelterId: number): Promise<string | null>{
     const {_avg } = await prisma.review.aggregate({
       where: {
         shelterId: shelterId
@@ -36,10 +40,14 @@ async function avgStaffRating(shelterId: number): Promise<number | null>{
         staff: true
       }
     })
-  return _avg.staff
+  if(_avg.staff){
+    return _avg.staff.toFixed(1)
+  } else {
+    return null
+  }
 } 
 
-async function avgSafetyRating(shelterId: number): Promise<number | null>{
+async function avgSafetyRating(shelterId: number): Promise<string | null>{
     const {_avg } = await prisma.review.aggregate({
       where: {
         shelterId: shelterId
@@ -48,5 +56,9 @@ async function avgSafetyRating(shelterId: number): Promise<number | null>{
         safety: true
       }
     })
-  return _avg.safety
+  if(_avg.safety){
+    return _avg.safety.toFixed(1)
+  } else {
+    return null
+  }
 } 

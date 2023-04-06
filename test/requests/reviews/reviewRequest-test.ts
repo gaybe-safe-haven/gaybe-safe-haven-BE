@@ -45,11 +45,11 @@ describe('Post Review', () => {
       expect(res.body.data.attributes.shelterId).to.be.a('number');
       expect(res.body.data.attributes.shelterId).to.eq(shelter.id);
 
-      expect(res.body.data.attributes.cleanliness).to.eq(10);
+      expect(res.body.data.attributes.cleanliness).to.eq('10.0');
 
-      expect(res.body.data.attributes.safety).to.eq(10)
+      expect(res.body.data.attributes.safety).to.eq('10.0')
 
-      expect(res.body.data.attributes.staff).to.eq(9.8)
+      expect(res.body.data.attributes.staff).to.eq('9.8')
 
   })
 
