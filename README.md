@@ -1,56 +1,62 @@
 
 # gaybe-safe-haven-BE
-=======
-   If further endpoint documentation is to be added, copy and paste the following template to the bottom of the README and fill out.   
+======= 
+## Project Description
    
----
-Copy and Paste Example below ⌄⌄⌄
-### <Title of Endpoint Example: (Get a User)>
+#### Overview
+The LGBTQ+ community faces unique challenges when it comes to finding safe and welcoming shelters, especially for youth. Our app aims to bridge this information gap by allowing community members to submit safe shelter information through our app, which is then added to an API that we are building. Additionally, users can leave reviews based on their experiences at these shelters to provide valuable insight for those seeking safe and inclusive shelter options.    
 
-
-```http
-POST https://gaybe-safe-haven.herokuapp.com/api/v1/<endpoint-path-here>
-```
-
-<details>
-<summary>Example</summary>
+This repo is the backend API for the production app linked below.
+   
+Production App Demo:  https://gay-fe-safe-haven.vercel.app/
 <br>
-    
+Front End Repo:  https://github.com/gaybe-safe-haven/gayFE-safe-haven
 
-| Code | Description |
-| :--- | :--- |
-| 201 | `Created` |
+#### Backend API Team Members
+- https://github.com/Tscasady
+- https://github.com/Pocketzs
+- https://github.com/Pkseverance
 
-Example Request Body: 
+
    
-<Any helpful explantion of required body or params>   
-NOTE: <optional params or keys noted>
+
+### Built With
+- Typescript
+- Express
+- Prisma
+- Postgresql
+- Deployed on Heroku
+- Mocha/Chai
    
-```json
-{
    
-}
-```   
    
-Example Response:   
+## Getting Started
 
-```json
-
-{
-    
-}
-```
-
-</details>
-
----
-
-Copy and Paste Example above ^^^
+### Installation
    
----
-    
-<br>
-<br>
+1. Fork the Repo from the [Repository](https://github.com/gaybe-safe-haven/gaybe-safe-haven-BE)
+2. Clone the repo
+   ```sh
+   git@github.com:gaybe-safe-haven/gaybe-safe-haven-BE.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Set up your prefered local Database
+5. Add the url of database to key of `DATABASE_URL`
+   ```
+   /.env
+   
+   DATABASE_URL = <your database url>
+   ```
+6. Start up the server
+   ```sh
+   npm run dev
+   ```
+
+   
+   
    
 # RESTful Endpoints
 A collection of endpoints exposed on this API with example requests and responses.      
