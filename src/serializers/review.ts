@@ -1,6 +1,8 @@
+
 import { Review } from '@prisma/client'
 
-export function serializeReview(review: Review | null) {
+
+export function serializeReview(review: Review) {
   if (review) {
     return {
       id: review.id,
