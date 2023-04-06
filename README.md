@@ -8,7 +8,7 @@ The LGBTQ+ community faces unique challenges when it comes to finding safe and w
 
 This repo is the backend API for the production app linked below.
    
-Production App Demo:  https://gay-fe-safe-haven.vercel.app/
+Production App Demo:  https://saferkids.vercel.app/
 <br>
 Front End Repo:  https://github.com/gaybe-safe-haven/gayFE-safe-haven
 
